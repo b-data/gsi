@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  gsi:
+    build:
+      context: .
+      args:
+        - IMAGE=$IMAGE
+    image: gsi
+    container_name: gsi
+    network_mode: host
+    volumes:
+      - $PREFIX:/tmp/dst$PREFIX
+      - /etc/bash_completion.d:/tmp/etc/bash_completion.d
+      - /usr/local/share/bash-completion/completions:/tmp/usr/local/share/bash-completion/completions
+      - ./var/cache/gsi:/tmp/var/cache/gsi
+    environment:
+      - DESTDIR=/tmp/src
+      - FINALDIR=/tmp/dst
+      - GIT_VERSION=${GIT_VERSION}
+      - PREFIX=${PREFIX}
+    env_file:
+      - build.env
