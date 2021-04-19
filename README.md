@@ -4,9 +4,7 @@
 
 [This project](https://gitlab.com/b-data/git/gsi) is intended for system
 administrators who want to perform a global source-installation of
-[Git](https://github.com/git/git).
-
-It is meant for installing
+[Git](https://github.com/git/git). It is meant for installing
 [tagged Git releases](https://github.com/git/git/releases) on Debian-based
 Linux distributions, e.g. Ubuntu.
 
@@ -46,7 +44,7 @@ runtime:
 *  `perl`
 *  `zlib1g`
 
-These packages as well as `tar` and `curl` must be available on the host.
+These packages, as well as `tar` and `curl`, must be available on the host.
 
 ## Install
 
@@ -61,7 +59,7 @@ tar -zxf gsi.tar.gz --one-top-level --strip-components=1
 
 ## Usage
 
-Change directory and make a copy of all `sample.*` files:
+Change directory and make a copy of all `sample.` files:
 
 ```bash
 cd gsi
