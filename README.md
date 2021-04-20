@@ -8,6 +8,9 @@ administrators who want to perform a global source-installation of
 [tagged Git releases](https://github.com/git/git/releases) on Debian-based
 Linux distributions, e.g. Ubuntu.
 
+To perform a source-installation of Git in your own home directory, see
+[USER_INSTALL.md](USER_INSTALL.md)
+
 ## Table of Contents
 
 *  [Prerequisites](#prerequisites)
