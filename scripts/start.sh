@@ -15,3 +15,6 @@ sudo -E uninstall.sh
 
 # Install to $FINALDIR
 sudo -E install.sh
+
+# Set dir permissions
+sudo -E post-install.sh

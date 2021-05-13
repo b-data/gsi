@@ -9,7 +9,14 @@ cp -a $DESTDIR/* $FINALDIR/
 
 # Export list of installed files
 find $DESTDIR \( -type f -o -type l \) -printf '/%P\n' \
-  > /tmp/var/cache/gsi/$GIT_VERSION.list
+  > /tmp/var/cache/gsi/$GIT_VERSION-file.list
+
+# Export list of installed directories
+find $DESTDIR$PREFIX \( -type d \) -printf '/%P\n' \
+  > /tmp/var/cache/gsi/$GIT_VERSION-dir.list
+sed -i -E "/^\/(bin|lib|share|share\/man)?$/d" \
+  /tmp/var/cache/gsi/$GIT_VERSION-dir.list
+sed -i "s|^|$PREFIX|" /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 
 # bash completion
 install -m0644 \
@@ -20,7 +27,9 @@ install -m0644 \
   $FINALDIR$PREFIX/share/doc/git/contrib/completion/git-prompt.sh \
   $FINALDIR$PREFIX/lib/git-core/git-sh-prompt
 echo "$PREFIX/lib/git-core/git-sh-prompt" \
-  >> /tmp/var/cache/gsi/$GIT_VERSION.list
+  >> /tmp/var/cache/gsi/$GIT_VERSION-file.list
+sed -i "\/share\/doc\/git\/contrib\/completion$/d" \
+  /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 rm -rf $FINALDIR$PREFIX/share/doc/git/contrib/completion
 
 if [[ ! -f "/tmp/etc/bash_completion.d/git-prompt" ]]; then
