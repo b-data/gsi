@@ -12,7 +12,7 @@ services:
     volumes:
       - $PREFIX:/tmp/dst$PREFIX
       - /etc:/tmp/etc
-      - /usr/local/share/bash-completion/completions:/tmp/usr/local/share/bash-completion/completions
+      - /usr/local/share:/tmp/usr/local/share
       - ./var/cache/gsi:/tmp/var/cache/gsi
     environment:
       - DESTDIR=/tmp/src

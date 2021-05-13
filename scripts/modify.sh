@@ -10,7 +10,7 @@ cp -a --no-preserve=ownership /tmp/git-$GIT_VERSION/contrib \
   $DESTDIR$PREFIX/share/doc/git/
 
 # move and symlink hooks
-mkdir -p $DESTDIR$PREFIX/share/git-core/contrib/
+mkdir -p $DESTDIR$PREFIX/share/git-core/contrib
 mv $DESTDIR$PREFIX/share/doc/git/contrib/hooks \
   $DESTDIR$PREFIX/share/git-core/contrib/
 
