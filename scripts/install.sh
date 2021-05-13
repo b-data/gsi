@@ -19,6 +19,8 @@ sed -i -E "/^\/(bin|lib|share|share\/man)?$/d" \
 sed -i "s|^|$PREFIX|" /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 
 # bash completion
+mkdir -m 2775 -p /tmp/usr/local/share/bash-completion
+mkdir -m 2775 -p /tmp/usr/local/share/bash-completion/completions
 install -m0644 \
   $FINALDIR$PREFIX/share/doc/git/contrib/completion/git-completion.bash \
   /tmp/usr/local/share/bash-completion/completions/git
