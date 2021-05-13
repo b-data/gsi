@@ -93,4 +93,7 @@ build.env
 docker-compose.yml
 Dockerfile
 
+custom/**
 var/
+
+!.keep
