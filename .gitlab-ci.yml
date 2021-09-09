@@ -31,7 +31,10 @@ build:latest-linux-amd64:
     - os:linux
   script:
     - >
-      docker build -t $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-amd64
+      docker build
+      --build-arg IMAGE
+      --build-arg GIT_VERSION
+      -t $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-amd64
       -f build.Dockerfile .
     - |
       docker push $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-amd64
@@ -48,7 +51,10 @@ build:latest-linux-arm64v8:
     - os:linux
   script:
     - >
-      docker build -t $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-arm64v8
+      docker build
+      --build-arg IMAGE
+      --build-arg GIT_VERSION
+      -t $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-arm64v8
       -f build.Dockerfile .
     - |
       docker push $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-arm64v8
