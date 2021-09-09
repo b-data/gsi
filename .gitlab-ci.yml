@@ -24,7 +24,7 @@
   before_script:
     - *before-script-build
 
-build:latest-linux-amd64:
+build:version-linux-amd64:
   extends: .build
   tags:
     - arch:amd64
@@ -39,12 +39,12 @@ build:latest-linux-amd64:
     - |
       docker push $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-amd64
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop" && $CI_BUILD_PLATFORMS =~ /(linux\/amd64)/
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_BUILD_PLATFORMS =~ /(linux\/amd64)/
       changes:
         - build.Dockerfile
         - sample..env
 
-build:latest-linux-arm64v8:
+build:version-linux-arm64v8:
   extends: .build
   tags:
     - arch:arm64/v8
@@ -59,12 +59,12 @@ build:latest-linux-arm64v8:
     - |
       docker push $CI_APP_REPO/$GIT_VERSION/$IMAGE-linux-arm64v8
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop" && $CI_BUILD_PLATFORMS =~ /(linux\/arm64\/v8)/
+    - if: $CI_COMMIT_BRANCH == "master" && $CI_BUILD_PLATFORMS =~ /(linux\/arm64\/v8)/
       changes:
         - build.Dockerfile
         - sample..env
 
-build-manifest:latest-linux-multiarch:
+build-manifest:version-linux-multiarch:
   extends: .build
   stage: deploy
   script:
@@ -80,7 +80,7 @@ build-manifest:latest-linux-multiarch:
       fi
       docker manifest push $CI_APP_REPO/$GIT_VERSION/$IMAGE
   rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
+    - if: $CI_COMMIT_BRANCH == "master"
       changes:
         - build.Dockerfile
         - sample..env
