@@ -1,8 +1,21 @@
 ARG IMAGE
 
-FROM $IMAGE
+FROM $IMAGE as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
+
+ARG GIT_VERSION
+ARG PREFIX=/usr/local
+
+ARG USE_LIBPCRE=1
+ARG NO_SVN_TESTS=1
+ARG NO_PERL_CPAN_FALLBACKS=1
+ARG NO_TCLTK=1
+ARG NO_INSTALL_HARDLINKS=1
+ARG GIT_SKIP_TESTS=t9020
+ARG DEFAULT_TEST_TARGET=prove
+
+ARG DESTDIR=/tmp/src
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -43,4 +56,13 @@ WORKDIR /home/builder
 COPY scripts/git-prompt /var/tmp/
 COPY scripts/*.sh /usr/bin/
 
-CMD ["start.sh"]
+RUN mkdir -p /tmp/var/cache/gsi \
+  && ln -s /etc /tmp/etc \
+  && mkdir -p /tmp/usr/local \
+  && ln -s /usr/local/share /tmp/usr/local/share \
+  && start.sh
+
+FROM $IMAGE
+
+COPY --from=builder /usr/local /usr/local
+COPY --from=builder /etc/bash_completion.d /etc/bash_completion.d
