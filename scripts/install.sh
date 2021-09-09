@@ -34,7 +34,11 @@ sed -i "\/share\/doc\/git\/contrib\/completion$/d" \
   /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 rm -rf $FINALDIR$PREFIX/share/doc/git/contrib/completion
 
-if [[ ! -f "/tmp/etc/bash_completion.d/git-prompt" ]]; then
-  sed -i "s|PREFIX|$PREFIX|g" /var/tmp/git-prompt
-  install -m0644 /var/tmp/git-prompt /tmp/etc/bash_completion.d/git-prompt
+if [[ ! -d "/tmp/etc/bash_completion.d" ]]; then
+  mkdir /tmp/etc/bash_completion.d
+
+  if [[ ! -f "/tmp/etc/bash_completion.d/git-prompt" ]]; then
+    sed -i "s|PREFIX|$PREFIX|g" /var/tmp/git-prompt
+    install -m0644 /var/tmp/git-prompt /tmp/etc/bash_completion.d/git-prompt
+  fi
 fi
