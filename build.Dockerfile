@@ -1,6 +1,6 @@
 ARG IMAGE
 
-FROM $IMAGE as builder
+FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -62,7 +62,17 @@ RUN mkdir -p /tmp/var/cache/gsi \
   && ln -s /usr/local/share /tmp/usr/local/share \
   && start.sh
 
-FROM $IMAGE
+FROM ${IMAGE}
 
-COPY --from=builder /usr/local /usr/local
+LABEL org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.source="https://gitlab.com/b-data/git/gsi" \
+      org.opencontainers.image.vendor="b-data GmbH" \
+      org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
+
+ARG IMAGE
+ARG PREFIX=/usr/local
+
+ENV BASE_IMAGE=${IMAGE}
+
+COPY --from=builder ${PREFIX} ${PREFIX}
 COPY --from=builder /etc/bash_completion.d /etc/bash_completion.d
