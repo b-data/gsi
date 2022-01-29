@@ -24,7 +24,7 @@ documentation in various formats:
 
 ### Runtime
 
-The latest version of Git (currently 2.35.0) requires the following packages at
+The latest version of Git (currently 2.35.1) requires the following packages at
 runtime:
 
 *  `libc6`
@@ -42,7 +42,7 @@ These packages, as well as `tar` and `curl`, must be available on the host.
 Export environment variables `GIT_VERSION` and `PREFIX`, e.g.
 
 ```bash
-export GIT_VERSION=2.35.0 PREFIX=$HOME/.local
+export GIT_VERSION=2.35.1 PREFIX=$HOME/.local
 ```
 
 Compile Git binaries including documentation and install in your `~/.local`
