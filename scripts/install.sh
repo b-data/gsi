@@ -4,8 +4,14 @@
 
 set -e
 
-# Git
-cp -a $DESTDIR/* $FINALDIR/
+# According to https://www.debian.org/doc/debian-policy/ch-opersys.html#site-specific-programs
+if [[ "$PREFIX" == "/usr/local" && -e /tmp/etc/staff-group-for-usr-local ]]; then
+  perm=2775
+  group=staff
+else
+  perm=755
+  group=root
+fi
 
 # Export list of installed files
 find $DESTDIR \( -type f -o -type l \) -printf '/%P\n' \
@@ -18,9 +24,19 @@ sed -i -E "/^\/(bin|lib|share|share\/man)?$/d" \
   /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 sed -i "s|^|$PREFIX|" /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 
+# Git
+mkdir -p $FINALDIR$PREFIX/{bin,lib,share,share/man}
+cat /tmp/var/cache/gsi/$GIT_VERSION-dir.list \
+  | sed "s|^|$FINALDIR|" | xargs -n 10 mkdir -m$perm
+cat /tmp/var/cache/gsi/$GIT_VERSION-dir.list \
+  | sed "s|^|$FINALDIR|" | xargs -n 10 chown root:$group
+cp -R $DESTDIR/* $FINALDIR/
+
 # bash completion
-mkdir -m 2775 -p /tmp/usr/local/share/bash-completion
-mkdir -m 2775 -p /tmp/usr/local/share/bash-completion/completions
+mkdir -m$perm -p /tmp/usr/local/share/bash-completion
+chown root:$group /tmp/usr/local/share/bash-completion
+mkdir -m$perm -p /tmp/usr/local/share/bash-completion/completions
+chown root:$group /tmp/usr/local/share/bash-completion
 install -m0644 \
   $FINALDIR$PREFIX/share/doc/git/contrib/completion/git-completion.bash \
   /tmp/usr/local/share/bash-completion/completions/git

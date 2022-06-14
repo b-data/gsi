@@ -42,6 +42,7 @@ These packages, as well as `tar` and `curl`, must be available on the host.
 Export environment variables `GIT_VERSION` and `PREFIX`, e.g.
 
 ```bash
+mkdir $HOME/.local
 export GIT_VERSION=2.36.1 PREFIX=$HOME/.local
 ```
 
