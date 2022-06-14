@@ -14,4 +14,4 @@ cd /tmp \
     --prefix=$PREFIX \
     --libexecdir=$PREFIX/lib \
   && make all doc info strip \
-  && sudo -E make install install-doc install-html install-info
+  && make install install-doc install-html install-info

@@ -1,11 +1,12 @@
 ARG IMAGE
+ARG PREFIX=/usr/local
 
 FROM ${IMAGE} as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ARG GIT_VERSION
-ARG PREFIX=/usr/local
+ARG PREFIX
 
 ARG USE_LIBPCRE=1
 ARG NO_SVN_TESTS=1
@@ -20,7 +21,6 @@ ARG DESTDIR=/tmp/src
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     curl \
-    sudo \
     # Minimal dependencies for compiling and installing the Git binaries
     dh-autoreconf \
     libcurl4-gnutls-dev \
@@ -46,13 +46,6 @@ RUN apt-get update \
     ## mail
     libmailtools-perl
 
-RUN useradd -ms /bin/bash builder \
-  && usermod -aG sudo builder \
-  && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-USER builder
-WORKDIR /home/builder
-
 COPY scripts/git-prompt /var/tmp/
 COPY scripts/*.sh /usr/bin/
 
@@ -70,7 +63,7 @@ LABEL org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
 
 ARG IMAGE
-ARG PREFIX=/usr/local
+ARG PREFIX
 
 ENV BASE_IMAGE=${IMAGE}
 

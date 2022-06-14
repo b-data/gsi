@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   gsi:
@@ -9,8 +9,9 @@ services:
     image: gsi
     container_name: gsi
     network_mode: host
+    userns_mode: host
     volumes:
-      - $PREFIX:/tmp/dst$PREFIX
+      - ${PREFIX:-/usr/local}:/tmp/dst${PREFIX:-/usr/local}
       - /etc:/tmp/etc
       - /usr/local/share:/tmp/usr/local/share
       - ./var/cache/gsi:/tmp/var/cache/gsi
@@ -18,6 +19,7 @@ services:
       - DESTDIR=/tmp/src
       - FINALDIR=/tmp/dst
       - GIT_VERSION=${GIT_VERSION}
-      - PREFIX=${PREFIX}
+      - PREFIX=${PREFIX:-/usr/local}
+      - MODE=${MODE:-install}
     env_file:
       - build.env

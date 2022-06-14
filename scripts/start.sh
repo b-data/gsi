@@ -4,17 +4,27 @@
 
 set -e
 
-# Temp install to $DESTDIR$PREFIX
-build.sh
+# Test if PREFIX location is whithin limits
+if [[ ! "${PREFIX}" == "/usr/local" && ! "${PREFIX}" =~ ^"/opt" ]]; then
+  echo "ERROR:  PREFIX set to '${PREFIX}'. Must either be '/usr/local' or within '/opt'."
+  exit 1
+fi
 
-# Modify installation at temp
-sudo -E modify.sh
+if [[ "${MODE}" == "install" ]]; then
+  # Temp install to $DESTDIR$PREFIX
+  build.sh
 
-# Uninstall old Git version
-sudo -E uninstall.sh
+  # Modify installation at temp
+  modify.sh
 
-# Install to $FINALDIR
-sudo -E install.sh
+  # Uninstall old Git version
+  uninstall.sh
 
-# Set dir permissions
-sudo -E post-install.sh
+  # Install to $FINALDIR
+  install.sh
+fi
+
+if [[ "${MODE}" == "uninstall" ]]; then
+  # Uninstall old Git version
+  uninstall.sh
+fi
