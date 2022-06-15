@@ -6,7 +6,7 @@ set -e
 
 # install contrib stuff
 find /tmp/git-$GIT_VERSION/contrib -name '.git*' -delete
-cp -a --no-preserve=ownership /tmp/git-$GIT_VERSION/contrib \
+cp -R /tmp/git-$GIT_VERSION/contrib \
   $DESTDIR$PREFIX/share/doc/git/
 
 # move and symlink hooks
