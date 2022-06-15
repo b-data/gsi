@@ -16,14 +16,16 @@ if [[ -f "$FINALDIR$PREFIX/lib/git-core/git" ]]; then
 
   if [[ -f "/tmp/var/cache/gsi/$GIT_VERSION_OLD-dir.list" ]]; then
     tac /tmp/var/cache/gsi/$GIT_VERSION_OLD-dir.list \
-      | sed "/\/share\/man/d" | sed "s|^|$FINALDIR|" \
-      | xargs -n 10 rm -df
+      | sed "s|^|$FINALDIR|" | xargs -n 10 rmdir 2>&1 \
+      | sed "s|$FINALDIR||" | sed 's|^|INFO:   |'
   fi
 fi
 
 # bash completion
 if [[ -f "/tmp/usr/local/share/bash-completion/completions/git" ]]; then
-  rm /tmp/usr/local/share/bash-completion/completions/git
-  rm -d /tmp/usr/local/share/bash-completion/completions
-  rm -d /tmp/usr/local/share/bash-completion
+  rm -f /tmp/usr/local/share/bash-completion/completions/git
+  rmdir /tmp/usr/local/share/bash-completion/completions 2>&1 \
+    | sed "s|/tmp||" | sed 's|^|INFO:   |'
+  rmdir /tmp/usr/local/share/bash-completion 2>&1 \
+    | sed "s|/tmp||" | sed 's|^|INFO:   |'
 fi

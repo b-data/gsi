@@ -27,7 +27,7 @@ sed -i "s|^|$PREFIX|" /tmp/var/cache/gsi/$GIT_VERSION-dir.list
 # Git
 mkdir -p $FINALDIR$PREFIX/{bin,lib,share,share/man}
 cat /tmp/var/cache/gsi/$GIT_VERSION-dir.list \
-  | sed "s|^|$FINALDIR|" | xargs -n 10 mkdir -m$perm
+  | sed "s|^|$FINALDIR|" | xargs -n 10 mkdir -m$perm -p
 cat /tmp/var/cache/gsi/$GIT_VERSION-dir.list \
   | sed "s|^|$FINALDIR|" | xargs -n 10 chown root:$group
 cp -R $DESTDIR/* $FINALDIR/
@@ -36,7 +36,7 @@ cp -R $DESTDIR/* $FINALDIR/
 mkdir -m$perm -p /tmp/usr/local/share/bash-completion
 chown root:$group /tmp/usr/local/share/bash-completion
 mkdir -m$perm -p /tmp/usr/local/share/bash-completion/completions
-chown root:$group /tmp/usr/local/share/bash-completion
+chown root:$group /tmp/usr/local/share/bash-completion/completions
 install -m0644 \
   $FINALDIR$PREFIX/share/doc/git/contrib/completion/git-completion.bash \
   /tmp/usr/local/share/bash-completion/completions/git
