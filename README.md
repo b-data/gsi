@@ -54,7 +54,7 @@ These packages, as well as `tar` and `curl`, must be available on the host.
 Download and extract the source code of this project:
 
 ```bash
-curl -sSL https://gitlab.com/b-data/git/gsi/-/archive/master/gsi-master.tar.gz \
+curl -sSL https://gitlab.com/b-data/git/gsi/-/archive/main/gsi-main.tar.gz \
   -o gsi.tar.gz
 
 tar -zxf gsi.tar.gz --one-top-level --strip-components=1
