@@ -3,10 +3,10 @@
 # Containerised Git source-installation
 
 [This project](https://gitlab.com/b-data/git/gsi) is intended for system
-administrators who want to perform a global source-installation of
+administrators who want to perform a source-installation of
 [Git](https://github.com/git/git). It is meant for installing
-[tagged Git releases](https://github.com/git/git/releases) on Debian-based
-Linux distributions, e.g. Ubuntu.
+[tagged Git releases](https://github.com/git/git/tags) on Debian-based
+Linux distributions, e.g. Ubuntu, using a docker container.
 
 To perform a source-installation of Git in your own home directory, see
 [USER_INSTALL.md](USER_INSTALL.md)
