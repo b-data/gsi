@@ -36,7 +36,7 @@ To install docker, follow the instructions for your platform:
 
 ### Debian Packages
 
-The latest version of Git (currently 2.38.1) requires the following packages at
+The latest version of Git (currently 2.38.2) requires the following packages at
 runtime:
 
 *  `libc6`
