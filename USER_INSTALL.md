@@ -1,4 +1,4 @@
-# Git source-install (user directory)
+# Git source installation (user directory)
 
 
 
