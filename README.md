@@ -1,14 +1,14 @@
 [![minimal-readme compliant](https://img.shields.io/badge/readme%20style-minimal-brightgreen.svg)](https://github.com/RichardLitt/standard-readme/blob/master/example-readmes/minimal-readme.md) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) <a href="https://liberapay.com/benz0li/donate"><img src="https://liberapay.com/assets/widgets/donate.svg" alt="Donate using Liberapay" height="20"></a>
 
-# Containerised Git source-installation
+# Containerised Git source installation
 
 [This project](https://gitlab.com/b-data/git/gsi) is intended for system
-administrators who want to perform a source-installation of
+administrators who want to perform a source installation of
 [Git](https://github.com/git/git). It is meant for installing
 [tagged Git releases](https://github.com/git/git/tags) on Debian-based
 Linux distributions, e.g. Ubuntu, using a docker container.
 
-To perform a source-installation of Git in your own home directory, see
+To perform a source installation of Git in your own home directory, see
 [USER_INSTALL.md](USER_INSTALL.md)
 
 ## Table of Contents
@@ -36,7 +36,7 @@ To install docker, follow the instructions for your platform:
 
 ### Debian Packages
 
-The latest version of Git (currently 2.39.0) requires the following packages at
+The latest version of Git (currently 2.39.1) requires the following packages at
 runtime:
 
 *  `libc6`
