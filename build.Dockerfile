@@ -59,7 +59,7 @@ RUN mkdir -p /tmp/var/cache/gsi \
 FROM scratch
 
 LABEL org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.source="https://gitlab.com/b-data/git/gsi" \
+      org.opencontainers.image.source="https://gitlab.b-data.ch/git/gsi" \
       org.opencontainers.image.vendor="b-data GmbH" \
       org.opencontainers.image.authors="Olivier Benz <olivier.benz@b-data.ch>"
 
