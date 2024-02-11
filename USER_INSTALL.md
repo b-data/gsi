@@ -24,7 +24,7 @@ documentation in various formats:
 
 ### Runtime
 
-The latest version of Git (currently 2.43.0) requires the following packages at
+The latest version of Git (currently 2.43.1) requires the following packages at
 runtime:
 
 *  `libc6`
@@ -43,7 +43,7 @@ Export environment variables `GIT_VERSION` and `PREFIX`, e.g.
 
 ```bash
 mkdir $HOME/.local
-export GIT_VERSION=2.43.0 PREFIX=$HOME/.local
+export GIT_VERSION=2.43.1 PREFIX=$HOME/.local
 ```
 
 Compile Git binaries including documentation and install in your `~/.local`
