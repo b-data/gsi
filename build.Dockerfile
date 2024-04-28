@@ -45,7 +45,15 @@ RUN apt-get update \
     cvsps \
     libdbd-sqlite3-perl \
     ## mail
-    libmailtools-perl
+    libmailtools-perl \
+    ## Patch asciidoc
+    && if [ -f /usr/lib/python3/dist-packages/asciidoc/asciidoc.py ]; then \
+      sed -i "s/self.separator = ast.literal_eval('\"'/self.separator = ast.literal_eval('r\"'/g" \
+        /usr/lib/python3/dist-packages/asciidoc/asciidoc.py; \
+    else \
+      sed -i "s/self.separator = ast.literal_eval('\"'/self.separator = ast.literal_eval('r\"'/g" \
+        /usr/bin/asciidoc; \
+    fi
 
 COPY scripts/git-prompt /var/tmp/
 COPY scripts/*.sh /usr/bin/
