@@ -96,4 +96,6 @@ This project follows the
 
 ## License
 
-[MIT](LICENSE) © 2021 b-data GmbH
+Copyright © 2021 b-data GmbH
+
+Distributed under the terms of the [MIT License](LICENSE).
