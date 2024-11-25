@@ -37,7 +37,7 @@ To install docker, follow the instructions for your platform:
 
 ### Debian Packages
 
-The latest version of Git (currently 2.46.2) requires the following packages at
+The latest version of Git (currently 2.47.0) requires the following packages at
 runtime:
 
 *  `libc6`
@@ -97,7 +97,7 @@ This project follows the
 
 ## Support
 
-Community support: Open a new disussion
+Community support: Open a new discussion
 [here](https://github.com/orgs/b-data/discussions).
 
 Commercial support: Contact b-data by [email](mailto:support@b-data.ch).
