@@ -8,11 +8,3 @@ set -e
 find /tmp/git-$GIT_VERSION/contrib -name '.git*' -delete
 cp -R /tmp/git-$GIT_VERSION/contrib \
   $DESTDIR$PREFIX/share/doc/git/
-
-# move and symlink hooks
-mkdir -p $DESTDIR$PREFIX/share/git-core/contrib
-mv $DESTDIR$PREFIX/share/doc/git/contrib/hooks \
-  $DESTDIR$PREFIX/share/git-core/contrib/
-
-ln -rs $DESTDIR$PREFIX/share/git-core/contrib/hooks \
-  $DESTDIR$PREFIX/share/doc/git/contrib/hooks
