@@ -22,6 +22,8 @@ ARG DESTDIR=/tmp/src
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     curl \
+    # Compile features and subsystems written in Rust into Git
+    cargo \
     # Minimal dependencies for compiling and installing the Git binaries
     dh-autoreconf \
     libcurl4-gnutls-dev \
